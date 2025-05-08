@@ -19,17 +19,21 @@ $result_rute = $conn->query($sql_rute);
 </head>
 <body>
     <nav>
-      <a href="index.php">Home</a> |
-      <a href="DataPenumpang.php">Data Penumpang</a> |
-      <a href="jadwalRute.php">Jadwal dan Rute</a> |
-      <a href="tiket.php">Lihat Tiket</a> |
-      <a href="keberangkatan.php">Lihat Keberangkatan</a> |
-      <a href="kedatangan.php">Lihat Kedatangan</a>
+        <a href="index.php">Home</a> |
+        <a href="jadwalRute.php">Jadwal dan Rute</a> |
+        <a href="dataPenumpang.php">Data Penumpang</a> |
+        <a href="tiket.php">Tiket</a> |
+        <a href="keberangkatan.php">Keberangkatan</a> |
+        <a href="kedatangan.php">Kedatangan</a> |
+        <a href="daftar_petugas.php">Daftar Petugas</a>
     </nav>
 
   <main class="container">
     <section class="section">
-      <h2>Detail Jadwal Bus</h2>
+      <div class="btn-container">
+        <h2>Detail Jadwal Bus</h2>
+        <a href="jadwalRute/tambah_jadwal.php" class="action-btn add-btn">+ Tambah Jadwal</a>
+      </div>
       <table>
         <thead>
           <tr>
@@ -40,6 +44,7 @@ $result_rute = $conn->query($sql_rute);
             <th>Tanggal Berangkat</th>
             <th>Jam Berangkat</th>
             <th>Jam Tiba</th>
+            <th>Aksi</th>
           </tr>
         </thead>
         <tbody>
@@ -52,6 +57,10 @@ $result_rute = $conn->query($sql_rute);
             <td><?= htmlspecialchars($row['tanggal_berangkat']) ?></td>
             <td><?= htmlspecialchars($row['jam_berangkat']) ?></td>
             <td><?= htmlspecialchars($row['jam_tiba']) ?></td>
+            <td>
+              <a href="jadwalRute/edit_jadwal.php?id=<?= $row['id_jadwal'] ?>" class="action-btn edit-btn">Edit</a>
+              <a href="jadwalRute/delete_jadwal.php?id=<?= $row['id_jadwal'] ?>" class="action-btn delete-btn" onclick="return confirm('Yakin ingin menghapus jadwal ini?')">Hapus</a>
+            </td>
           </tr>
           <?php endwhile; ?>
         </tbody>
@@ -59,7 +68,10 @@ $result_rute = $conn->query($sql_rute);
     </section>
 
     <section class="section">
-      <h2>Data Rute</h2>
+      <div class="btn-container">
+        <h2>Data Rute</h2>
+        <a href="jadwalRute/tambah_rute.php" class="action-btn add-btn">+ Tambah Rute</a>
+      </div>
       <table>
         <thead>
           <tr>
@@ -69,6 +81,7 @@ $result_rute = $conn->query($sql_rute);
             <th>Jarak (km)</th>
             <th>Estimasi Waktu</th>
             <th>Harga Tiket</th>
+            <th>Aksi</th>
           </tr>
         </thead>
         <tbody>
@@ -80,6 +93,10 @@ $result_rute = $conn->query($sql_rute);
             <td><?= htmlspecialchars($row['jarak_km']) ?></td>
             <td><?= htmlspecialchars($row['estimasi_waktu']) ?></td>
             <td>Rp<?= number_format(htmlspecialchars($row['harga_tiket']), 0, ',', '.') ?></td>
+            <td>
+              <a href="jadwalRute/edit_rute.php?id=<?= $row['id_rute'] ?>" class="action-btn edit-btn">Edit</a>
+              <a href="jadwalRute/delete_rute.php?id=<?= $row['id_rute'] ?>" class="action-btn delete-btn" onclick="return confirm('Yakin ingin menghapus rute ini?')">Hapus</a>
+            </td>
           </tr>
           <?php endwhile; ?>
         </tbody>
